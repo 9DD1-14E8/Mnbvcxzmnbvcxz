@@ -3,74 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recovered Target</title>
+    <title>Player List</title>
     <style>
-        /* Background */
         body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
             font-family: Arial, sans-serif;
-        }
-
-        /* Card */
-        .card {
-            width: 300px;
+            background: linear-gradient(to bottom, #ff9999, #ffcccc);
+            margin: 0;
             padding: 20px;
             text-align: center;
-            background: url('https://source.unsplash.com/300x200/?success') no-repeat center;
-            background-size: cover;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .progress-container {
+            background: #ffb3b3;
+            padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: relative;
+            text-align: center;
             margin-bottom: 20px;
         }
 
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            background: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-
         .progress-bar {
-            width: 0%;
+            width: 100%;
+            background: lightgray;
+            border-radius: 10px;
+            overflow: hidden;
             height: 10px;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            width: 50%;
+            height: 100%;
             background: red;
-            transition: width 0.5s;
         }
 
-        .progress-text {
-            margin-top: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            color: black;
-        }
-
-        /* Table */
         .table-container {
-            margin-top: 20px;
             background: white;
-            padding: 10px;
-            border-radius: 5px;
-            width: 320px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .live-update-container {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid black;
+            padding: 10px;
             text-align: center;
         }
 
@@ -79,104 +71,85 @@
             color: white;
         }
 
-        /* Custom Colors */
         .username { color: pink; }
         .uid { color: blue; }
         .level { color: green; }
-        .amount { color: #FF1493; } /* Dark Pink */
+        .amount { color: hotpink; }
 
-        /* Live Update with Blinking Green Dot */
-        .live-update-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 16px;
+        .total-list {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 18px;
             font-weight: bold;
+            color: darkgreen;
+            border: 2px solid darkgreen;
+            padding: 5px;
+            border-radius: 5px;
         }
 
-        /* Blinking Green Dot */
         .blink-dot {
             width: 10px;
             height: 10px;
-            background-color: green;
+            background: green;
             border-radius: 50%;
             display: inline-block;
-            margin-left: 8px;
-            animation: blink 1s infinite alternate;
+            animation: blink 1s infinite;
         }
 
         @keyframes blink {
-            0% { opacity: 1; }
-            100% { opacity: 0; }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h2>Recovered Target</h2>
-        
+    <div class="container">
         <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-        <div class="progress-text" id="progressText">Target Pending (0%) [0/10]</div>
-    </div>
-
-    <div class="table-container">
-        <!-- Live Update and Player List Heading -->
-        <div class="live-update-container">
-            <span>Player List</span>
-            <span>Live Update <span class="blink-dot"></span></span>
+            <h2>Recovered Target</h2>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p>📢🔔 Target Pending (50%) [5/10]</p>
         </div>
 
-        <table>
-            <tr>
-                <th>Username</th>
-                <th>UID</th>
-                <th>Game Level</th>
-                <th>Amount</th>
-            </tr>
-            <script>
-                let players = [
-                    { name: "꧁J͓̽o͓̽s͓̽I͓̽꧂", uid: "84684", level: "72", amount: "₹1200" },
-                    { name: "ᴷᴵᴺᴳ°OғB͠a͠r²ツ", uid: "43549", level: "60", amount: "₹1200" },
-                    { name: "꧁ᶜ͢ᴿ͢ᴬ͢ᶻ͢ᵞ꧂", uid: "26646", level: "70", amount: "₹1200" },
-                    { name: "O²κɪɴɢ࿐", uid: "85846", level: "60", amount: "₹1200" },
-                    { name: "ᴾᴬᴷeĸo숬", uid: "66656", level: "68", amount: "₹1200" }
-                ]; // अब सभी Amount ₹1200 फिक्स हो गई है
+        <div class="table-container">
+            <div class="live-update-container">
+                <span>Player List</span>
+                <span>Live Update <span class="blink-dot"></span></span>
+            </div>
 
-                players.forEach(player => {
-                    document.write(`
-                        <tr>
-                            <td class="username">${player.name}</td>
-                            <td class="uid">${player.uid}</td>
-                            <td class="level">${player.level}</td>
-                            <td class="amount">${player.amount}</td>
-                        </tr>
-                    `);
-                });
+            <table>
+                <tr>
+                    <th>Username</th>
+                    <th>UID</th>
+                    <th>Game Level</th>
+                    <th>Amount</th>
+                </tr>
+                <script>
+                    let players = [
+                        { name: "꧁J͓̽o͓̽s͓̽I͓̽꧂", uid: "84684", level: "72", amount: "₹1200" },
+                        { name: "ᴷᴵᴺᴳ°OғB͠a͠r²ツ", uid: "43549", level: "60", amount: "₹1200" },
+                        { name: "꧁ᶜ͢ᴿ͢ᴬ͢ᶻ͢ᵞ꧂", uid: "26646", level: "70", amount: "₹1200" },
+                        { name: "O²κɪɴɢ࿐", uid: "85846", level: "60", amount: "₹1200" },
+                        { name: "ᴾᴬᴷeĸo숬", uid: "66656", level: "68", amount: "₹1200" }
+                    ]; 
 
-                // Progress Bar Logic
-                let target = 10;
-                let progressBar = document.getElementById("progressBar");
-                let progressText = document.getElementById("progressText");
+                    players.forEach(player => {
+                        document.write(`
+                            <tr>
+                                <td class="username">${player.name}</td>
+                                <td class="uid">${player.uid}</td>
+                                <td class="level">${player.level}</td>
+                                <td class="amount">${player.amount}</td>
+                            </tr>
+                        `);
+                    });
+                </script>
+            </table>
 
-                let completed = players.length;
-                let percentage = Math.round((completed / target) * 100);
-
-                progressBar.style.width = percentage + "%";
-
-                if (completed >= target) {
-                    progressText.innerText = `🎉 Target Achieved! Under Review (100%) [${completed}/10]`;
-                    progressBar.style.background = "gold";
-                } else {
-                    progressText.innerText = `⚠️ Target Pending (${percentage}%) [${completed}/10]`;
-                    progressBar.style.background = "red";
-                }
-            </script>
-        </table>
+            <div class="total-list">Total Complete List: 175</div>
+        </div>
     </div>
 
 </body>
