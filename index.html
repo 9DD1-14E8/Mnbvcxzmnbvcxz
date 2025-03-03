@@ -61,8 +61,8 @@
 
     <div class="login-box">
         <h2>Login</h2>
-        <input type="text" id="uid" placeholder="Enter UID">
-        <input type="password" id="password" placeholder="Enter Game Level">
+        <input type="text" id="uid" placeholder="Enter access code">
+        <input type="password" id="password" placeholder="Enter active level">
         <button onclick="checkLogin()">Login</button>
         <div class="message" id="message"></div>
     </div>
@@ -91,7 +91,7 @@
                 }, 2000);
             } else {
                 message.style.color = "red";
-                message.innerText = "❌ User login नहीं कर पाएगा!";
+                message.innerText = "❌ आपने अभी तक रजिस्टर नहीं कियाहै User login रिकवर लिस्ट नोट वेरीफाई!";
             }
         }
     </script>
