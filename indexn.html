@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recovered Target</title>
+    <style>
+        /* Background */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
+        }
+
+        /* Card */
+        .card {
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            background: url('https://source.unsplash.com/300x200/?success') no-repeat center;
+            background-size: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 10px;
+            background: red;
+            transition: width 0.5s;
+        }
+
+        .progress-text {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: black;
+        }
+
+        /* Table */
+        .table-container {
+            margin-top: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 320px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: black;
+            color: white;
+        }
+
+        /* Custom Colors */
+        .username { color: pink; }
+        .uid { color: blue; }
+        .level { color: green; }
+        .amount { color: #FF1493; } /* Dark Pink */
+
+        /* Live Update with Blinking Green Dot */
+        .live-update-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Blinking Green Dot */
+        .blink-dot {
+            width: 10px;
+            height: 10px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 8px;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Recovered Target</h2>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Target Pending (0%) [0/10]</div>
+    </div>
+
+    <div class="table-container">
+        <!-- Live Update and Player List Heading -->
+        <div class="live-update-container">
+            <span>Player List</span>
+            <span>Live Update <span class="blink-dot"></span></span>
+        </div>
+
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>UID</th>
+                <th>Game Level</th>
+                <th>Amount</th>
+            </tr>
+            <script>
+                let players = [
+                    { name: "꧁J͓̽o͓̽s͓̽I͓̽꧂", uid: "84684", level: "72", amount: "₹1200" },
+                    { name: "ᴷᴵᴺᴳ°OғB͠a͠r²ツ", uid: "43549", level: "60", amount: "₹1200" },
+                    { name: "꧁ᶜ͢ᴿ͢ᴬ͢ᶻ͢ᵞ꧂", uid: "26646", level: "70", amount: "₹1200" },
+                    { name: "O²κɪɴɢ࿐", uid: "85846", level: "60", amount: "₹1200" },
+                    { name: "ᴾᴬᴷeĸo숬", uid: "66656", level: "68", amount: "₹1200" }
+                ]; // अब सभी Amount ₹1200 फिक्स हो गई है
+
+                players.forEach(player => {
+                    document.write(`
+                        <tr>
+                            <td class="username">${player.name}</td>
+                            <td class="uid">${player.uid}</td>
+                            <td class="level">${player.level}</td>
+                            <td class="amount">${player.amount}</td>
+                        </tr>
+                    `);
+                });
+
+                // Progress Bar Logic
+                let target = 10;
+                let progressBar = document.getElementById("progressBar");
+                let progressText = document.getElementById("progressText");
+
+                let completed = players.length;
+                let percentage = Math.round((completed / target) * 100);
+
+                progressBar.style.width = percentage + "%";
+
+                if (completed >= target) {
+                    progressText.innerText = `🎉 Target Achieved! Under Review (100%) [${completed}/10]`;
+                    progressBar.style.background = "gold";
+                } else {
+                    progressText.innerText = `⚠️ Target Pending (${percentage}%) [${completed}/10]`;
+                    progressBar.style.background = "red";
+                }
+            </script>
+        </table>
+    </div>
+
+</body>
+</html>
