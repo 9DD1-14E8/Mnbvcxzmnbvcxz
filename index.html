@@ -55,6 +55,22 @@
             font-weight: bold;
             color: red;
         }
+
+        .contact-button {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background: #0088cc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contact-button:hover {
+            background: #0077b5;
+        }
     </style>
 </head>
 <body>
@@ -65,6 +81,7 @@
         <input type="password" id="password" placeholder="Enter active level">
         <button onclick="checkLogin()">Login</button>
         <div class="message" id="message"></div>
+        <button class="contact-button" id="contactButton" onclick="contactSupport()">📞 Contact Support</button>
     </div>
 
     <script>
@@ -80,19 +97,26 @@
             let enteredUID = document.getElementById("uid").value;
             let enteredPassword = document.getElementById("password").value;
             let message = document.getElementById("message");
+            let contactButton = document.getElementById("contactButton");
 
             let user = players.find(player => player.uid === enteredUID && player.level === enteredPassword);
 
             if (user) {
                 message.style.color = "green";
                 message.innerText = "✅ Login Successful!";
+                contactButton.style.display = "none"; // बटन छुपाएं
                 setTimeout(() => {
                     window.location.href = "indexn.html"; // सफल लॉगिन पर मुख्य पेज पर ले जाएगा
                 }, 2000);
             } else {
                 message.style.color = "red";
-                message.innerText = "❌ आपने अभी तक रजिस्टर नहीं कियाहै User login रिकवर लिस्ट नोट वेरीफाई!";
+                message.innerText = "❌ आपने अभी तक रजिस्टर नहीं किया है! User login रिकवर लिस्ट नोट वेरीफाई!";
+                contactButton.style.display = "block"; // बटन दिखाएं
             }
+        }
+
+        function contactSupport() {
+            window.location.href = "https://t.me/Officialteamsmbot";
         }
     </script>
 
